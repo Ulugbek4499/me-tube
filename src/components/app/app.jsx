@@ -1,12 +1,14 @@
-import { Button, Stack } from '@mui/material/Button'
+import { Button, Stack, Container } from '@mui/material'
 
 const App = () => {
 	return (
-		<Stack spacing={2} direction='row'>
-			<Button variant='text'>Text</Button>
-			<Button variant='contained'>Contained</Button>
-			<Button variant='outlined'>Outlined</Button>
-		</Stack>
+		<Container variant=''>
+			<Stack spacing={2} direction='row'>
+				<Button variant='text'>Text</Button>
+				<Button variant='contained'>Contained</Button>
+				<Button variant='outlined'>Outlined</Button>
+			</Stack>
+		</Container>
 	)
 }
 
