@@ -11,6 +11,7 @@ const Navbar = () => {
 			alignItems={'center'}
 			justifyContent={'space-between'}
 			p='2'
+			height={'10vh'}
 			sx={{
 				position: 'sticky',
 				top: 0,
