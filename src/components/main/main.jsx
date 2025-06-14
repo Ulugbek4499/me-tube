@@ -1,6 +1,6 @@
 import { Box, Container, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
-import { Category } from '../'
+import { Category, Videos } from '../'
 import { colors } from '../../constants/colors'
 
 const Main = () => {
@@ -20,7 +20,7 @@ const Main = () => {
 						{selectedCategory}
 						<span style={{ color: colors.Secondary }}>Videos</span>
 					</Typography>
-					Videos
+					<Videos />
 				</Container>
 			</Box>
 		</Stack>
