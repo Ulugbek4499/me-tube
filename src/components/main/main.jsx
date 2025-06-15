@@ -13,8 +13,10 @@ const Main = () => {
 	useEffect(() => {
 		const getData = async () => {
 			try {
-				const data = await ApiService.fetching('search')
-				setVideos(data)
+				const data = await ApiService.fetching(
+					`search?part=snippet&q=${selectedCategory}`
+				)
+				setVideos(data.items)
 			} catch (error) {
 				console.log(error)
 			}
