@@ -1,12 +1,27 @@
 import { Box, Container, Stack, Typography } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Category, Videos } from '../'
 import { colors } from '../../constants/colors'
+import { ApiService } from '../../service/api.service'
 
 const Main = () => {
 	const [selectedCategory, setSelectedCategory] = useState('New')
+	const [videos, setVideos] = useState([])
 
 	const selectedCategoryHandler = category => setSelectedCategory(category)
+
+	useEffect(() => {
+		const getData = async () => {
+			try {
+				const data = await ApiService.fetching('search')
+				setVideos(data)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+
+		getData()
+	}, [])
 
 	return (
 		<Stack>
@@ -20,7 +35,7 @@ const Main = () => {
 						{selectedCategory}
 						<span style={{ color: colors.Secondary }}>Videos</span>
 					</Typography>
-					<Videos />
+					<Videos videos={videos} />
 				</Container>
 			</Box>
 		</Stack>
