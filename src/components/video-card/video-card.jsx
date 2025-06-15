@@ -1,4 +1,5 @@
-import { Card, CardContent, CardMedia } from '@mui/material'
+import { Card, CardContent, CardMedia, Typography } from '@mui/material'
+import moment from 'moment'
 import { colors } from '../../constants/colors'
 
 const VideoCard = ({ video }) => {
@@ -15,7 +16,12 @@ const VideoCard = ({ video }) => {
 					height: '200px',
 					position: 'relative',
 				}}
-			/>
+			>
+				<Typography my={'5px'} sx={{ opacity: '.4' }}>
+					{moment(video?.snippet?.publishedAt).fromNow()}
+				</Typography>
+				<Typography>{video?.snippet?.title}</Typography>
+			</CardContent>
 		</Card>
 	)
 }
