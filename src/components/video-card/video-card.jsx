@@ -1,10 +1,18 @@
-import { Card, CardContent, CardMedia, Typography } from '@mui/material'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import {
+	Avatar,
+	Card,
+	CardContent,
+	CardMedia,
+	Stack,
+	Typography,
+} from '@mui/material'
 import moment from 'moment'
 import { colors } from '../../constants/colors'
 
 const VideoCard = ({ video }) => {
 	return (
-		<Card sx={{ widt: '320px', boxShadow: 'none', borderRadius: 0 }}>
+		<Card sx={{ width: '320px', boxShadow: 'none', borderRadius: 0 }}>
 			<CardMedia
 				image={video?.snippet?.thumbnails?.high?.url}
 				alt={video?.snippet?.title}
@@ -17,10 +25,34 @@ const VideoCard = ({ video }) => {
 					position: 'relative',
 				}}
 			>
-				<Typography my={'5px'} sx={{ opacity: '.4' }}>
-					{moment(video?.snippet?.publishedAt).fromNow()}
-				</Typography>
-				<Typography>{video?.snippet?.title}</Typography>
+				<>
+					<Typography my={'5px'} sx={{ opacity: '.4' }}>
+						{moment(video?.snippet?.publishedAt).fromNow()}
+					</Typography>
+					<Typography variant='subtitle1' fontWeight={'bold'}>
+						{video?.snippet?.title.slice(0, 50)}
+					</Typography>
+					<Typography variant='subtitle2' sx={{ opacity: '.6' }}>
+						{video?.snippet?.description.slice(0, 70)}
+					</Typography>
+				</>
+				<>
+					<Stack
+						direction={'row'}
+						position={'absolute'}
+						bottom={'10px'}
+						alignItems={'center'}
+						gap={'5px'}
+					>
+						<Avatar src={video?.snippet?.thumbnails?.high?.url} />
+						<Typography variant={'subtitle2'} color={'gray'}>
+							{video?.snippet?.channelTitle}
+							<CheckCircleIcon
+								sx={{ fontSize: '12px', color: 'gray', ml: '5px' }}
+							/>
+						</Typography>
+					</Stack>
+				</>
 			</CardContent>
 		</Card>
 	)
