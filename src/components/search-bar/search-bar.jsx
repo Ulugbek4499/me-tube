@@ -11,6 +11,7 @@ const SearchBar = () => {
 		e.preventDefault()
 		if (value) {
 			navigate(`/search/${value}`)
+			setValue('')
 		}
 	}
 
