@@ -7,8 +7,9 @@ import {
 import { Box, Chip, Stack, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
-import { renderHtml } from 'react-render-html'
+import renderHTML from 'react-render-html'
 import { useParams } from 'react-router-dom'
+import { Loader } from '../'
 import { ApiService } from '../../service/api.service'
 
 const VideoDetail = () => {
@@ -33,6 +34,8 @@ const VideoDetail = () => {
 	// 	statistics: { viewCount, likeCount, commentCount },
 	// } = videoDetail
 
+	if (!videoDetail?.snippet) return <Loader />
+
 	return (
 		<Box minHeight={'90vh'} mb={10}>
 			<Box display={'flex'}>
@@ -56,7 +59,7 @@ const VideoDetail = () => {
 						{videoDetail?.snippet?.title}
 					</Typography>
 					<Typography variant='subtitle2' p={2} sx={{ opacity: '.7' }}>
-						{renderHtml(videoDetail?.snippet?.description)}
+						{renderHTML(videoDetail?.snippet?.description)}
 					</Typography>
 					<Stack direction='row' gap='20px' alignItems='center' py={1} px={2}>
 						<Visibility />
