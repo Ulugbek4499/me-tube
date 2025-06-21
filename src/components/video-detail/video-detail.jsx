@@ -1,7 +1,13 @@
-import { Tag } from '@mui/icons-material'
-import { Box, Chip, Typography } from '@mui/material'
+import {
+	FavoriteOutlined,
+	MarkChatRead,
+	Tag,
+	Visibility,
+} from '@mui/icons-material'
+import { Box, Chip, Stack, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
+import { renderHtml } from 'react-render-html'
 import { useParams } from 'react-router-dom'
 import { ApiService } from '../../service/api.service'
 
@@ -36,7 +42,7 @@ const VideoDetail = () => {
 						className='react-player'
 						controls
 					/>
-					{videoDetail.snippet.tags.map((item, idx) => (
+					{videoDetail?.snippet?.tags.map((item, idx) => (
 						<Chip
 							label={item}
 							key={idx}
@@ -50,8 +56,34 @@ const VideoDetail = () => {
 						{videoDetail?.snippet?.title}
 					</Typography>
 					<Typography variant='subtitle2' p={2} sx={{ opacity: '.7' }}>
-						{videoDetail?.snippet?.title}
+						{renderHtml(videoDetail?.snippet?.description)}
 					</Typography>
+					<Stack direction='row' gap='20px' alignItems='center' py={1} px={2}>
+						<Visibility />
+						{parseInt(videoDetail.statistics.viewCount).toLocaleString()} views
+					</Stack>
+					<Stack
+						sx={{ opacity: 0.7 }}
+						direction='row'
+						alignItems='center'
+						gap='3px'
+					>
+						<FavoriteOutlined />
+						{parseInt(videoDetail.statistics.likeCount).toLocaleString()} likes
+					</Stack>
+
+					<Stack
+						sx={{ opacity: 0.7 }}
+						direction='row'
+						alignItems='center'
+						gap='3px'
+					>
+						<MarkChatRead />
+						{parseInt(
+							videoDetail.statistics.commentCount
+						).toLocaleString()}{' '}
+						comment
+					</Stack>
 				</Box>
 				<Box width={'25%'}>Suggested Video</Box>
 			</Box>
